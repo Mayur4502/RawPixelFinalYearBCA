@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block mainContain %}
+<div class="single-product">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="product-gallery">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade active show" id="related1">
+                        <a href="#">
+                            <img class="zoom_01 img-fluid" alt="single" src="http://127.0.0.1:8000/media/{{imageInfo.url}}">
+                        </a>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="product-content">
+                <div class="item-category">{{imageInfo.catagoryid.catagoryname}}</div>
+                <h2 class="item-title">{{imageInfo.title}}</h2>
+                <ul class="entry-meta">
+                    <li>Price:
+                        <span>{{imageInfo.price}}</span>
+                    </li>   
+                    <!--<li>Tags:
+                        <a href="#">Bag,</a>
+                        <a href="#">Leather</a>
+                    </li>-->
+                </ul>
+                <p>
+                    {{imageInfo.description}}
+                </p>
+                    {% if hasLike == 0 %}
+                    <a href="{% url 'addlike' %}?pid={{imageInfo.imageid}}"><button class="btn btn-info">Like</button></a>
+                    {% else %}
+                    <a href="{% url 'dellike' %}?pid={{imageInfo.imageid}}"><button class="btn btn-danger">Unlike</button></a>
+                    {% endif %}
+                    <br>
+                    <br>
+                    {% if hasSave == 0 %}
+                    <a href="{% url 'addsave' %}?pid={{imageInfo.imageid}}"><button class="btn btn-info">Save</button></a>
+                    {% else %}
+                    <a href="{% url 'delsave' %}?pid={{imageInfo.imageid}}"><button class="btn btn-danger">Unsave</button></a>
+                    {% endif %}
+
+                <ul class="action-area">
+                    
+                    <li>
+                        {% if request.session.uid != imageInfo.userid.userid and tb == 0 %}
+                        <button class="cart-btn" id="rzp-button1">Buy Now</button>
+
+                        {% endif %}
+                        
+                        {% if tb >= 1 or request.session.uid == imageInfo.userid.userid %}
+                            <a class="cart-btn" href='{% url 'download' %}?id={{imageInfo.imageid}}'>Download</a>
+                        {%endif%}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="single-product-info">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#description" role="tab" aria-selected="true">Details</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#add-info" role="tab" aria-selected="false">Likes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#reviews" role="tab" aria-selected="false">Comments</a>
+        </li>
+        <li class="nav-item">
+            <img style="width:70px;height:70px;border-radius:50%;margin-left: 660px;" src="http://127.0.0.1:8000/media/{{imageInfo.userid.profile_pic}}" alt="User">
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade active show" id="description" role="tabpanel">
+            <div class="product-description">
+                <table class="table table-stripped">
+                    <tr>
+                        <th>Username</th>
+                        <td>
+                            {% if request.session.uid ==  imageInfo.userid.username %}
+                            <a href="{% url 'about' %}"> {{imageInfo.userid.username}}</a>
+                            {% else %}
+                            <a href="{% url 'about' %}?uid={{imageInfo.userid.userid}}"> {{imageInfo.userid.username}}</a>
+                            {% endif %}
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <th>E-Mail</th>
+                        <td>{{imageInfo.userid.email}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <th>Bio</th>
+                        <td>{{imageInfo.userid.bio}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="add-info" role="tabpanel">
+            <div class="product-review">
+                {% for x in likes %}
+                <div class="media">
+                    <div class="item-img">
+                        <img style="height:30px;width:30px" src="http://127.0.0.1:8000/media/{{x.userid.profile_pic}}" alt="blog">
+                    </div>
+                    <div class="media-body">
+                        <div class="author-name">
+                            <h5 class="item-title" style="margin:5px">{{x.userid.username}}</h5> 
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="reviews" role="tabpanel">
+            <div class="product-review">
+                {% for x in comms %}
+                <div class="media">
+                    <div class="item-img">
+                        <img style="height:90px;width:90px" src="http://127.0.0.1:8000/media/{{x.userid.profile_pic}}" alt="blog">
+                    </div>
+                    <div class="media-body">
+                        <div class="item-date">{{x.date_time}}</div>
+                        <div class="author-name">
+                            <h5 class="item-title">{{x.userid.username}}</h5>
+                        </div>
+                        <p>{{x.comment}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="review-form">
+                <h3 class="heading-title">WRITE A COMMENT</h3>
+                <form method="post" action="{% url 'addComm' %}?pid={{imageInfo.imageid}}"> {% csrf_token %}
+                    <div class="row gutters-15">
+                        <div class="col-12 form-group">
+                            <textarea class="form-control textarea" placeholder="Comment Here *" name="txtComment" id="message" cols="30" rows="6"></textarea>
+                        </div>
+                        <div class="col-12 form-group">
+                            <input type="submit" class="submit-btn" value="SUBMIT COMMENT">
+                        </div>
+                    </div>
+                    <div class="form-response"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_gF7POCIl4LD58A", // Enter the Key ID generated from the Dashboard
+    "amount": "{{imageInfo.price}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "{{payment.currency}}",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{payment.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        window.location.href="{% url 'success' %}?rpid="+response.razorpay_payment_id+"&roid="+response.razorpay_order_id+"&rs="+response.razorpay_signature+"&iid="+{{imageInfo.imageid}}
+
+     
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9000090000"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+{% endblock mainContain %}

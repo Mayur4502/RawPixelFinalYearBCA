@@ -1,0 +1,40 @@
+from django.contrib import admin
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('',views.hello),
+    path("demo/",views.demo),
+    path("demoList/",views.demoList),
+    path("loadLogin",views.loadlogin),
+    path("login",views.login),
+    path("register",views.register),
+    path("home",views.home,name="home"),
+    path("uploadImage",views.loadUploadImage,name="uploadImg"),
+    path("uploadImg",views.uploadImg),
+    path("profile",views.profile,name="profile"),
+    path("about/",views.about,name="about"),
+    path("photos/",views.photos,name="photos"),
+    path("albums/",views.albums,name="albums"),
+    path("loadUploadAlbum",views.loadUploadAlbum),
+    path("uploadAlbum",views.uploadAlbum),
+    path("followers",views.followers),
+    path("following",views.following),
+    path("imageInfo/",views.imageInfo,name="imageInfo"),
+    path("addComment/",views.addCommnet,name="addComm"),
+    path("albumPhoto/",views.albumPhoto,name="ap"),
+    path("uploadAlbumImage/",views.uploadAlbumImage,name="uploadAlbumImg"),
+    path("insertLike/",views.insertLike,name="addlike"),
+    path("deleteLike/",views.deleteLike,name="dellike"),
+    path("insertSave/",views.insertSave,name="addsave"),
+    path("deleteSave/",views.deleteSave,name="delsave"),
+    path("savedPhoto",views.savedPhoto,name="savedphoto"),
+    path("searchImage",views.searchImage,name="searchImg"),
+    path("base",views.base),
+    path("allPhoto",views.allPhoto,name="allphoto"),
+    path("likedPhoto",views.likedPhoto,name="likedphoto"),
+    path("success/",views.payment_success,name="success"),
+    path("download/",views.download,name="download"),
+    path("orders",views.orders,name="orders"),
+    path("logout",views.logout,name="logout")
+    ]

@@ -1,0 +1,32 @@
+ 
+-used to create new database migration files based on the changes you have made to your Django models.
+  
+   python manage.py makemigrations.
+  
+- you have to run this command firstly in powershell or cmd or terminal.
+
+
+
+
+- command in Django is used to apply migrations to the database. When you make changes to your Django models and create migration files using python manage.py makemigrations, those changes are not automatically reflected in the database schema. Instead, you need to apply those migrations using the migrate command.
+
+python manage.py migrate 
+
+- you have to run this command after the makemigration command
+
+
+- for run the app type this command.
+	python manage.py runserver
+
+- after run the website .
+
+	->  http://127.0.0.1:8000/admin -> this urlwill open django administartion means admin side of 				Django.
+		
+		Username : root
+		Password : root
+    
+        -> http://127.0.0.1:8000/stockImg/login -> This url will open the login page of website
+
+
+
+

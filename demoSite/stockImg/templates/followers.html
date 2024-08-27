@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block mainContain %}
+<div class="banner-user">
+    <div class="banner-content">
+        <div class="media">
+            <div class="item-img">
+                <img src="./assets/media/banner/user_1.jpg" alt="User">
+            </div>
+            <div class="media-body">
+                <h3 class="item-title">{{userInfo.username}}</h3>
+                <div class="item-subtitle">{{userInfo.cityid.cityname}},{{userInfo.cityid.stateid.statename}},{{userInfo.cityid.stateid.countryid.countryname}}</div>
+                <ul class="item-social">
+                    <li><a href="https://www.facebook.com/" class="bg-fb"><i class="icofont-facebook"></i></a></li>
+                    <li><a href="https://www.twitter.com/" class="bg-twitter"><i class="icofont-twitter"></i></a></li>
+                    <li><a href="https://www.dribble.com/" class="bg-dribble"><i class="icofont-dribbble"></i></a></li>
+                    <li><a href="https://www.youtube.com/" class="bg-youtube"><i class="icofont-brand-youtube"></i></a></li>
+                    <li><a href="https://www.behance.com/" class="bg-behance"><i class="icofont-behance"></i></a></li>
+                </ul>
+                <ul class="user-meta">
+                    <li>Posts: <span>12</span></li>
+                    <li>Comments: <span>12</span></li>
+                    <li>Views: <span>1.2k</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'myProfileNav.html' %}
+<div class="row gutters-20 zoom-gallery">
+    {% for x in images %}
+    <div class="col-lg-3 col-md-4 col-6">
+        <div class="user-group-photo">
+            <a href="media/figure/photo_lg1.jpg" class="popup-zoom">
+                <img src="~/{{x.url}}" alt="Gallery">
+            </a>
+            {{x.description}}
+        </div>
+    </div>
+    {% endfor %}   
+</div>
+{% endblock mainContain %}   

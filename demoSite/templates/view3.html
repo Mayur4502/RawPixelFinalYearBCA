@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Roll No</th>
+					<th>Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				{%for x in myList%}
+				<tr>
+					<td>{{x.rno}}</td>
+					<td>{{x.sname}}</td>
+				</tr>
+				{%endfor%}
+			</tbody>
+		</table>
+	</body>
+</html>

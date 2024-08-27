@@ -1,0 +1,20 @@
+
+{%if request.GET.uid  %}
+<div class="block-box user-top-header">
+    <ul class="menu-list">
+        <li style="max-width:33.33%;flex-basis:100%"><a href="{%  url 'about' %}?uid={{userInfo.userid}}">About</a></li>
+        <li style="max-width:33.33%;flex-basis:100%"><a href="{%  url 'photos' %}?uid={{userInfo.userid}}">Photos</a></li>
+        <li style="max-width:33.33%;flex-basis:100%"><a href="{%  url 'albums' %}?uid={{userInfo.userid}}">Album</a></li>
+    </ul>
+</div>
+{%else%}
+<div class="block-box user-top-header">
+    <ul class="menu-list">
+        <li style="max-width:33.33%;flex-basis:100%"><a href="{% url 'about' %}" >About</a></li>
+        <li style="max-width:33.33%;flex-basis:100%"><a href="{% url 'photos' %}">Photos</a></li>
+        <li style="max-width:33.33%;flex-basis:100%"><a href="{% url 'albums' %}">Album</a></li>
+        {% comment %} <li><a href="./followers">Followers</a></li>
+        <li><a href="./following">Following</a></li> {% endcomment %}
+    </ul>
+</div>
+{% endif %}

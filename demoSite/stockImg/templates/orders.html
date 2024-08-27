@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block mainContain %}
+<table width="70%" align="center" class="table table-striped">
+    <thead>
+        <tr>
+            <th>OrderID</th>
+            <th>Order Date time</th>
+            <th>Amount</th>
+            <th>Image</th>
+        </tr>
+        
+    </thead>
+    <tbody>
+        {% for x in orders %}
+        <tr>
+            <td>{{x.orderid}}</td>
+            <td>{{x.OrderDateTime}}</td>
+            <td>{{x.price}}</td>
+            <td><a  href="{% url 'imageInfo' %}?pid={{x.imageid.imageid}}"><img style="height:100px;width:100px;object-fit:cover" src="http://127.0.0.1:8000/media/{{x.imageid.url}}" ></a></td>
+        </tr>
+        {%endfor%}
+    </tbody>
+    
+</table>
+{% endblock mainContain %}
+

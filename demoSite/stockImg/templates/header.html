@@ -1,0 +1,54 @@
+{%load static%}
+<header class="fixed-header">
+    <div class="header-menu">
+        <div class="navbar">
+            <div class="nav-item d-none d-sm-block">
+                <div >
+                    
+                    <a href="{% url 'home' %}"><img src="http://127.0.0.1:8000/media/media/images/logo.png" alt="Cirkle" class="p-3" style="height:89px;width:300px;object-fit:contain"></a>
+                </div>
+            </div>
+            
+            <div class="nav-item header-control">
+                <div class="d-flex align-items-center">
+                    
+                    
+                    <div class="dropdown dropdown-notification">
+                        
+                        <div class="dropdown-menu dropdown-menu-right">
+                            
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="inline-item">
+                    <div class="dropdown dropdown-admin">
+                        <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                            <span class="media">
+                                <span class="item-img">
+                                    <img src="http://127.0.0.1:8000/media/media/images{{userInfo.profile_pic}}" alt="Chat" style="width:50px;height:50px;object-fit:cover">
+                                    <span class="acc-verified"><i class="icofont-check"></i></span>
+                                </span>
+                                <span class="media-body">
+                                    <span class="item-title">{{userInfo.userid.username}}</span>
+                                </span>
+                            </span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <ul class="admin-options">
+                                <li><a href="#">Profile Settings</a></li>
+                                <li><a href="user-groups.html">Groups</a></li>
+                                <li><a href="forums.html">Forums</a></li>
+                                <li><a href="#">Settings</a></li>
+                                <li><a href="#">Terms and Conditions</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="{% url 'logout' %}">Log Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

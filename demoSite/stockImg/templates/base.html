@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+<head>
+    <!-- Meta Data -->
+    <title>{% block title %}{% endblock title %}| Stock Image</title>
+
+    {% include 'topscripts.html' %}
+</head>
+
+<body class="bg-link-water">
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+    <a href="#wrapper" data-type="section-switch" class="scrollup">
+        <i class="icofont-bubble-up"></i>
+    </a>
+    <!-- Preloader Start Here -->
+    <div id="preloader"></div>
+    <!-- Preloader End Here -->
+    <div id="wrapper" class="wrapper">
+        <!-- Top Header -->
+        {%include 'header.html'%}
+
+        <!-- Sidebar Left -->
+        <div class="fixed-sidebar">
+            <div class="fixed-sidebar-left small-sidebar">
+                <div class="sidebar-toggle">
+                    <button class="toggle-btn toggler-open">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+                <div class="sidebar-menu-wrap">
+                    <div class="mCustomScrollbar" data-mcs-theme="dark" data-mcs-axis="y">
+                        <ul class="side-menu">
+                            <li><a href="{% url 'home' %}" class="menu-link" data-toggle="tooltip" data-placement="right" title=" HOME"><i class="icofont-home"></i></a></li>
+                            <li><a href="{% url 'profile' %}" class="menu-link" data-toggle="tooltip" data-placement="right" title=" MY PROFILE"><i class="icofont-user"></i></a></li>
+                            <li><a href="{% url 'likedphoto' %}" class="menu-link" data-toggle="tooltip" data-placement="right" title=" LIKED IMAGES"><i class="icofont-like"></i></a></li>
+                            <li><a href="{% url 'allphoto' %}" class="menu-link" data-toggle="tooltip" data-placement="right" title=" EXLORE"><i class="icofont-compass"></i></a></li>
+                            <li><a href="{% url 'savedphoto' %}" class="menu-link" data-toggle="tooltip" data-placement="right" title=" SAVED IMAGES"><i class="icofont-save"></i></a></li>
+                            <li><a href="{% url 'orders' %}" class="menu-link" data-toggle="tooltip" data-placement="right" title=" ORDERS"><i class="icofont-box"></i></a></li>
+                            <li><a href="{% url 'uploadImg' %}" class="menu-link" data-toggle="tooltip" data-placement="right" title=" UPLOAD IMAGE"><i class="icofont-upload"></i></a></li>
+                            <li><a href="{% url 'searchImg' %}" class="menu-link" data-toggle="tooltip" data-placement="right" title=" SEARCH"><i class="icofont-search"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="fixed-sidebar-left large-sidebar">
+                <div class="sidebar-toggle">
+                    <div class="sidebar-logo">
+                        <a href="index.html"><img src="http://127.0.0.1:8000/media/media/images/logo.png" alt="Logo" style="height:89px;width:170px;object-fit:contain"></a>
+                    </div>
+                    <button class="toggle-btn toggler-close">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+                <div class="sidebar-menu-wrap">
+                    <div class="mCustomScrollbar" data-mcs-theme="dark" data-mcs-axis="y">
+                        <ul class="side-menu">
+                            <li><a href="{% url 'home' %}" class="menu-link"><i class="icofont-home"></i><span class="menu-title">HOME</span></a></li>
+                            <li><a href="{% url 'profile' %}" class="menu-link"><i class="icofont-user"></i><span class="menu-title">MY PROFILE</span></a></li>
+                            <li><a href="{% url 'likedphoto' %}" class="menu-link"><i class="icofont-like"></i><span class="menu-title">LIKED IMAGES</span></a></li>
+                            <li><a href="{% url 'allphoto' %}" class="menu-link"><i class="icofont-compass"></i><span class="menu-title">EXPLORE</span></a></li>
+                            <li><a href="{% url 'savedphoto' %}" class="menu-link"><i class="icofont-save"></i><span class="menu-title">SAVED IMAGES</span></a></li>
+                            <li><a href="{% url 'orders' %}" class="menu-link"><i class="icofont-box"></i><span class="menu-title">DOWNLOAD</span></a></li>
+                            <li><a href="{% url 'uploadImg' %}" class="menu-link"><i class="icofont-upload"></i><span class="menu-title">UPLOAD IMAGE</span></a></li>
+                            <li><a href="{% url 'searchImg' %}" class="menu-link"><i class="icofont-search"></i><span class="menu-title">SEARCH</span></a></li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page Content -->
+        <div class="page-content">
+
+            <!--=====================================-->
+            <!--=        Newsfeed  Area Start       =-->
+            <!--=====================================-->
+            <div class="container">
+                <!-- Banner Area Start -->
+               {% block mainContain %}{% endblock mainContain %}
+
+                
+                
+            </div>
+            <!--=====================================-->
+            <!--=        Footer Area Start       	=-->
+            <!--=====================================-->
+            {%include 'footer.html'%}
+
+
+        </div>
+        <!-- Chat Modal Here -->
+    
+    </div>
+    <!-- Jquery Js -->
+
+    {%include 'bottomScripts.html'%}
+</body>
+
+</html>

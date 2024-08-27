@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block mainContain %}
+<div class="banner-user" style="background-image:url('http://127.0.0.1:8000/media/{{albumInfo.thumbnail}}')";>
+    <div class="banner-content">
+        <div class="media">
+            <div class="item-img">
+                <img style="height:100px;width:100px" src="http://127.0.0.1:8000/media/{{albumInfo.userid.profile_pic}}" alt="User">
+            </div>
+            <div class="media-body">
+                <h3 class="item-title">{{albumInfo.userid.username}}</h3>
+                <div class="item-subtitle">{{albumInfo.title}} {{albumInfo.userid.cityid.cityname}},{{albumInfo.userid.cityid.stateid.statename}},{{albumInfo.userid.cityid.stateid.countryid.countryname}}</div>
+                <ul class="item-social">
+                    <li><a href="https://www.facebook.com/" class="bg-fb"><i class="icofont-facebook"></i></a></li>
+                    <li><a href="https://www.twitter.com/" class="bg-twitter"><i class="icofont-twitter"></i></a></li>
+                    <li><a href="https://www.dribble.com/" class="bg-dribble"><i class="icofont-dribbble"></i></a></li>
+                    <li><a href="https://www.youtube.com/" class="bg-youtube"><i class="icofont-brand-youtube"></i></a></li>
+                    <li><a href="https://www.behance.com/" class="bg-behance"><i class="icofont-behance"></i></a></li>
+                </ul>
+                <ul class="user-meta">
+                    <li>Total Images: <span>{{totImg}}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% if request.session.uid == albumInfo.userid.userid%}
+<div class="">
+    <h3 class="item-title">Upload your Image</h3>
+    <form method="post" action="{%url 'uploadAlbumImg'%}?tid={{albumInfo.albumid}}"  enctype="multipart/form-data"> {%csrf_token%}
+        <div class="form-group">
+            <input type="file" name="fup" class="form-control" placeholder="First Name">
+        </div>
+
+
+        <div class="form-group">
+            <input type="text" name="txtPrice"  class="form-control" placeholder="Price you want to sell your image for">
+        </div>
+        
+        <div class="form-group">
+            <textarea name="txtDesc" class="form-control" placeholder="Add description to your image"></textarea>
+        </div>
+
+        <div class="form-group">
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="validationFormCheck1">
+                <label class="form-check-label" for="validationFormCheck1">I accept the <a href="#">Terms and Conditions</a></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" name="registration" class="submit-btn" value="Submit">
+        </div>
+    </form>
+</div>
+
+{%endif%}
+<div class="row gutters-20 zoom-gallery mt-5 p-5 bg-light">
+    {% for x in photos %}
+    <div class="col-lg-3 col-md-4 col-6">
+        <div class="user-group-photo">
+            <a href="{% url 'imageInfo' %}?pid={{x.imageid}} " class="">
+                <img src="http://127.0.0.1:8000/media/{{x.url}}" alt="Gallery" style="width:100%;height:300px;object-fit:cover">
+            </a>
+        </div>
+    </div>
+    {% endfor %}   
+</div>    
+{% endblock mainContain %}

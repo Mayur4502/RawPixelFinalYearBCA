@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block mainContain %}
+<div class="row gutters-20 zoom-gallery">
+    {% for x in imageInfo %}
+    <div class="col-lg-3 col-md-4 col-6">
+        <div class="user-group-photo">
+            <a href="./imageInfo/?pid={{x.imageid}}">
+                <img src="http://127.0.0.1:8000/media/{{x.url}}" alt="Gallery"  style="width:100%;height:300px;object-fit:cover">
+            </a>
+            <p>{{x.title}}</p>
+        </div>
+    </div>
+    {% endfor %}   
+</div>
+{% endblock mainContain %}

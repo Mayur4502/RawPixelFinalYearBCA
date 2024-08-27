@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block mainContain %}
+<div class="banner-user">
+    <div class="banner-content">
+        <div class="media">
+            <div class="item-img">
+                <img style="height:100px;width:100px" src="http://127.0.0.1:8000/media/{{userInfo.profile_pic}}" alt="User">
+            </div>
+            <div class="media-body">
+                <h3 class="item-title">{{userInfo.username}}</h3>
+                <div class="item-subtitle">{{userInfo.cityid.cityname}},{{userInfo.cityid.stateid.statename}},{{userInfo.cityid.stateid.countryid.countryname}}</div>
+                <ul class="item-social">
+                    <li><a href="https://www.facebook.com/" class="bg-fb"><i class="icofont-facebook"></i></a></li>
+                    <li><a href="https://www.twitter.com/" class="bg-twitter"><i class="icofont-twitter"></i></a></li>
+                    <li><a href="https://www.dribble.com/" class="bg-dribble"><i class="icofont-dribbble"></i></a></li>
+                    <li><a href="https://www.youtube.com/" class="bg-youtube"><i class="icofont-brand-youtube"></i></a></li>
+                    <li><a href="https://www.behance.com/" class="bg-behance"><i class="icofont-behance"></i></a></li>
+                </ul>
+                <ul class="user-meta">
+                    <li>Posts: <span>12</span></li>
+                    <li>Comments: <span>12</span></li>
+                    <li>Views: <span>1.2k</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'myProfileNav.html' %}
+
+{% endblock mainContain %}
+
